@@ -1,4 +1,4 @@
-﻿const API_BASE = import.meta.env.VITE_API_URL || `${API_BASE}";
+const API_BASE = import.meta.env.VITE_API_URL || `${API_BASE}`;
 import { useState, useEffect, useRef } from "react";
 
 export default function AudioUpload() {
@@ -30,7 +30,7 @@ export default function AudioUpload() {
 
   const fetchMeetings = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/meetings");
+      const res = await fetch(`${API_BASE}/api/meetings`);
       const data = await res.json();
       if (data.success) {
         setSavedMeetings(data.meetings);
@@ -54,7 +54,7 @@ export default function AudioUpload() {
     setStatus("Transcribing, translating, identifying speakers & summarizing...");
 
     try {
-      const response = await fetch(`${API_BASE}/api/meetings/upload", {
+      const response = await fetch(`${API_BASE}/api/meetings/upload`, {
         method: "POST",
         body: formData,
       });
@@ -312,11 +312,11 @@ export default function AudioUpload() {
               >
                 <div>
                   <div style={{ fontWeight: "600", fontSize: "0.9rem" }}>
-                    {m.accessPin ? "🔒 " : ""}
+                    {m.accessPin ? "?? " : ""}
                     {m.title}
                   </div>
                   <div style={{ fontSize: "0.75rem", color: "#cbd5e1", marginTop: "0.25rem" }}>
-                    {m.detectedLanguage?.toUpperCase()} → {m.targetLanguage}
+                    {m.detectedLanguage?.toUpperCase()} ? {m.targetLanguage}
                   </div>
                 </div>
                 <button
@@ -331,7 +331,7 @@ export default function AudioUpload() {
                     fontSize: "0.9rem",
                   }}
                 >
-                  ✕
+                  ?
                 </button>
               </div>
             ))}
@@ -430,7 +430,7 @@ export default function AudioUpload() {
                   fontWeight: "600",
                 }}
               >
-                🎙️ Record Live Mic
+                ??? Record Live Mic
               </button>
             ) : (
               <button
@@ -445,7 +445,7 @@ export default function AudioUpload() {
                   fontWeight: "600",
                 }}
               >
-                ⏹️ Stop & Analyze ({recordingSeconds}s)
+                ?? Stop & Analyze ({recordingSeconds}s)
               </button>
             )}
           </div>
@@ -490,7 +490,7 @@ export default function AudioUpload() {
                   onClick={handleTogglePinLock}
                   style={{ padding: "0.4rem 0.85rem", backgroundColor: "#475569", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.85rem", fontWeight: "600" }}
                 >
-                  {currentMeeting.accessPin ? "🔒 Update/Unlock PIN" : "🔓 Set Access PIN"}
+                  {currentMeeting.accessPin ? "?? Update/Unlock PIN" : "?? Set Access PIN"}
                 </button>
               </div>
             </div>
@@ -501,7 +501,7 @@ export default function AudioUpload() {
                 { id: "summary", label: "AI Summary & Action Items" },
                 { id: "diarization", label: "Speaker Diarization (Click to Rename)" },
                 { id: "transcript", label: "Original & Translated Text" },
-                { id: "chat", label: "💬 Ask Your Meeting (AI Chat)" },
+                { id: "chat", label: "?? Ask Your Meeting (AI Chat)" },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -588,7 +588,7 @@ export default function AudioUpload() {
                           title="Click to rename speaker"
                           style={{ cursor: "pointer", textDecoration: "underline dotted" }}
                         >
-                          {seg.speaker} ✎
+                          {seg.speaker} ?
                         </span>
                       )}
                       <span style={{ color: "#64748b", fontWeight: "400" }}>({seg.start}s - {seg.end}s)</span>
@@ -623,7 +623,7 @@ export default function AudioUpload() {
                 <div style={{ minHeight: "180px", maxHeight: "320px", overflowY: "auto", backgroundColor: "#f8fafc", padding: "1rem", borderRadius: "8px", marginBottom: "0.75rem", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   {chatHistory.length === 0 ? (
                     <p style={{ color: "#64748b", margin: 0, fontSize: "0.9rem" }}>
-                      Ask anything about this meeting — e.g., <em>"What were the main decisions?"</em> or <em>"Draft a follow-up email summarizing action items."</em>
+                      Ask anything about this meeting � e.g., <em>"What were the main decisions?"</em> or <em>"Draft a follow-up email summarizing action items."</em>
                     </p>
                   ) : (
                     chatHistory.map((msg, i) => (
