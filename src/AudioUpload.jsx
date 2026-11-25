@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL || `${API_BASE}`;
+const API_BASE = import.meta.env.VITE_API_URL || "https://meeting-ai-server-fpid.onrender.com";
 import { useState, useEffect, useRef } from "react";
 
 export default function AudioUpload() {
